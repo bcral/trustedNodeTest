@@ -1,13 +1,5 @@
 // ERC20 token with fees and blacklisting
-
-// Assumptions: 
-// -You're ok with me using an ERC20 template, because building from scratch would
-// be a huge waste of time
-// -You want the fee to be taken out any time the user transfers an amount
-// -50% of fees should be burned
-// -The blacklist feature is intended
 // SPDX-License-Identifier: MIT
-
 pragma solidity ^0.8.0;
 
 // Import Ownable from the OpenZeppelin Contracts library

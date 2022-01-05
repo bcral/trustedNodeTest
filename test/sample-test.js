@@ -11,7 +11,6 @@ describe("TestCoin tests", function() {
   let owner;
   let addr1;
   let addr2;
-  let addr3;
   let addrs;
 
   // `beforeEach` will run before each test, re-deploying the contract every
@@ -19,7 +18,7 @@ describe("TestCoin tests", function() {
   beforeEach(async function () {
     // Get the ContractFactory and Signers here.
     TC = await ethers.getContractFactory("TestCoin");
-    [owner, addr1, addr2, addr3, ...addrs] = await ethers.getSigners();
+    [owner, addr1, addr2, ...addrs] = await ethers.getSigners();
     // Deploy with treasury address
     tc = await TC.deploy(testTreasury);
     // Mint, because we need some coins to play with!
@@ -83,14 +82,14 @@ describe("TestCoin tests", function() {
     expect(await tc.totalSupply()).to.equal(2992) // 25 should have been burned
   });
 
-  it("Blacklist addr1 - SHOULD FAIL", async function() {
+  it("Blacklist addr1 - * SHOULD FAIL *", async function() {
 
     await tc.toggleBlacklist(addr1.address);
     // transfer to blacklisted address should fail
     await tc.transfer(addr1.address, 200);
   });
 
-  it("Blacklist addr1", async function() {
+  it("Toggle blacklist on addr1 twice, transfer", async function() {
 
     await tc.toggleBlacklist(addr1.address);
     await tc.toggleBlacklist(addr1.address);
